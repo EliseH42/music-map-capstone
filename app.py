@@ -14,11 +14,12 @@ from wtforms.validators import DataRequired, Length, ValidationError
 from flask_login import LoginManager, login_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
+
 app = Flask(__name__)
 
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://mxddontcjbnsyl:2427ecea35992fc9b286225ad786984959ad3b986b6b4d1a958ab05c568683e9@ec2-3-212-143-188.compute-1.amazonaws.com:5432/d9garccm32sd5k'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ["HEROKU_URI"]
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
