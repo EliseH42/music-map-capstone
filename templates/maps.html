@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block header %}
+{% block title %}My Map{% endblock %}
+{% endblock %}
+
+{% block content %}
+Please center on a location on the map and link to the song you would like mapped there:
+{% from "_formhelpers.html" import render_field %}
+  <form method="POST" action="/maps">
+    {{ form.LocationForm }}
+    {{ render_field(form.location) }}
+    {{ render_field(form.latitude) }}
+    {{ render_field(form.longitude) }}
+    {{ render_field(form.songname) }}
+    {{ render_field(form.songlink) }}
+
+    <input type=submit value="Add Song">
+
+</form>
+
+<iframe src="{{ url_for('map_helper') }}" title="My map" width="100%" height="600"></iframe> 
+
+
+
+
+
+{% endblock %}
