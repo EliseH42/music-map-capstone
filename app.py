@@ -72,7 +72,7 @@ def login_correct(username, password):
 
 @login_manager.user_loader
 def load_user(userid):
-    return User.query.get(userid)
+    return User.query.filter_by(id=userid).first()
 
 
 class LoginForm(FlaskForm):
@@ -164,7 +164,7 @@ def login():
 
 @app.route('/login', methods=['GET'])
 def login_page():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated():
         return redirect(url_for('maps'))
 
     return render_template('login.html', form = LoginForm())
