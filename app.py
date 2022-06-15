@@ -164,7 +164,7 @@ def login():
 
 @app.route('/login', methods=['GET'])
 def login_page():
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         return redirect(url_for('maps'))
 
     return render_template('login.html', form = LoginForm())
