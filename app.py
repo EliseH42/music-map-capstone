@@ -155,7 +155,7 @@ def login():
 
     if user.check_password(password):
         
-        login_user(user)
+        login_user(user, remember=True)
     else:
         flash('Invalid username/password')
         return render_template('login.html', form = form)
@@ -182,7 +182,7 @@ def register():
     user = User(username = form.username.data,
             password_hash = generate_password_hash(form.password.data))
 
-    login_user(user)
+    login_user(user, remember=True)
     db.session.add(user)
     db.session.commit()
     return redirect(url_for('maps'))
